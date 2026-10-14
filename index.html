@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Arteleo is an educational design studio in Egypt. Covers, characters, interior systems and full revision series for teachers, centers and schools.">
+<link rel="icon" href="mascot.webp">
+<title>Arteleo Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;600&family=Lalezar&display=swap">
+<style>
+/* Layout: full-bleed brand bands (yellow hero, paper work, ink services, paper process, yellow clients, ink contact), each with a centred 1200px inner column */
+:root{
+  --yellow:#ffc81e; --ink:#121210; --paper:#f2f2ef; --tile:#e5e4df; --muted:#5f5e58; --line:#d6d5cf; --white:#ffffff; --ink-soft:#2a2a26; --ink-muted:#a9a89f;
+  --display:"Archivo","Arial Black",Impact,sans-serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --ar:"IBM Plex Sans Arabic","Noto Sans Arabic",Tahoma,sans-serif;
+  --ar-display:"Lalezar","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{overflow-x:clip;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:1200px;margin:0 auto}
+.ar{font-family:var(--ar);direction:rtl}
+.eyebrow{font-family:var(--display);font-stretch:110%;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+h2.big{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(34px,6vw,72px);line-height:.95;letter-spacing:-.02em;text-transform:uppercase;margin:0;text-wrap:balance}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-stretch:110%;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.04em;padding:14px 22px;border-radius:999px;border:2px solid var(--ink);text-decoration:none;cursor:pointer;background:none;color:var(--ink)}
+.btn.solid{background:var(--ink);color:var(--yellow)}
+.btn:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--yellow);border-bottom:2px solid var(--ink)}
+nav.top .in{display:flex;align-items:center;gap:20px;min-height:64px}
+nav.top .logo img{height:38px;width:auto}
+nav.top .links{display:flex;gap:22px;margin-inline-start:auto;font-family:var(--display);font-stretch:110%;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.06em}
+nav.top .links a{text-decoration:none}
+nav.top .links a:hover{text-decoration:underline;text-decoration-thickness:2px}
+nav.top .btn{padding:9px 16px;font-size:13px}
+@media (max-width:760px){nav.top .links{display:none}nav.top .btn{margin-inline-start:auto}}
+
+/* hero */
+.hero{background:var(--yellow);padding-block:48px 0;overflow:hidden}
+.hero .in{display:grid;grid-template-columns:1.25fr 1fr;gap:32px;align-items:center}
+.hero h1{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(44px,8.2vw,108px);line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin:16px 0 18px}
+.hero .arline{text-wrap:balance;font-family:var(--ar-display);font-size:clamp(24px,3.2vw,36px);line-height:1.3;margin:0 0 18px}
+.hero p.lead{max-width:52ch;font-size:19px;margin:0 0 28px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero .art{min-width:0;position:relative;height:540px}
+.deck{position:absolute;inset:0 0 70px 40px;perspective:1600px}
+.deck .bk{position:absolute;top:10px;right:40px;width:290px;aspect-ratio:600/848;max-width:70%;border-radius:2px 6px 6px 2px;overflow:hidden;
+  box-shadow:-2px 0 0 rgba(0,0,0,.25) inset,0 26px 40px -12px rgba(18,18,16,.55),0 6px 14px rgba(18,18,16,.25);
+  transform-origin:50% 100%;transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .6s ease,filter .9s ease;will-change:transform}
+.deck .bk img{width:100%;height:100%;object-fit:cover}
+.deck .bk::after{content:"";position:absolute;inset:0 auto 0 0;width:10px;background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.12) 60%,transparent)}
+.deck .bk{cursor:pointer}
+.deck:hover .bk:hover{box-shadow:-2px 0 0 rgba(0,0,0,.25) inset,0 40px 60px -14px rgba(18,18,16,.65),0 10px 20px rgba(18,18,16,.3)}
+/* custom cursor: the Arteleo mascot follows the mouse on desktop */
+@media (pointer:fine){
+  html.mc,html.mc a,html.mc button,html.mc .case,html.mc .bk{cursor:none}
+  html.mc input,html.mc textarea,html.mc select{cursor:auto}
+  #mcur{position:fixed;left:0;top:0;width:52px;height:52px;z-index:9999;pointer-events:none;transform:translate(-100px,-100px);will-change:transform}
+  #mcur img{width:100%;height:100%;display:block;transform-origin:30% 20%;transition:transform .25s cubic-bezier(.2,.8,.2,1.4);filter:drop-shadow(2px 3px 0 rgba(18,18,16,.35))}
+  #mcur.hot img{transform:scale(1.35) rotate(-14deg)}
+  #mcur.down img{transform:scale(.85) rotate(8deg)}
+  #mcur.hide{opacity:0}
+}
+.deck .bk.out{transform:translate(160px,60px) rotate(18deg) scale(.9)!important;opacity:0}
+.hero .art .mascot{position:absolute;left:0;bottom:-4px;width:44%;height:auto;z-index:30;filter:drop-shadow(8px 10px 0 rgba(18,18,16,.18));animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-1.5deg)}}
+.hero h1 .w{display:inline-block;animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{transform:translateY(40%);opacity:0}}
+@media (prefers-reduced-motion:reduce){.hero .art .mascot,.hero h1 .w{animation:none}.deck .bk{transition:none}}
+@media (max-width:860px){.hero .art{height:440px;max-width:460px;width:100%}.deck .bk{width:230px}}
+@media (max-width:420px){.hero .art{height:380px}.deck .bk{width:190px;right:20px}}
+@media (max-width:860px){.hero .in{grid-template-columns:1fr}.hero .art{max-width:440px}}
+.stats{margin-top:40px;border-top:2px solid var(--ink);display:grid;grid-template-columns:repeat(3,1fr)}
+.stats div{padding:18px 18px 22px 0;display:flex;flex-direction:column;gap:2px}
+.stats div+div{border-inline-start:2px solid var(--ink);padding-inline-start:18px}
+.stats b{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(28px,4vw,48px);line-height:1}
+.stats span{font-size:14px}
+@media (max-width:560px){.stats{grid-template-columns:1fr}.stats div+div{border-inline-start:0;border-top:2px solid var(--ink);padding-inline-start:0}}
+
+/* cover marquee */
+.strip{background:var(--ink);overflow:hidden;padding-block:26px;border-top:2px solid var(--ink)}
+.track{display:flex;gap:22px;width:max-content;animation:roll 60s linear infinite}
+.track img{height:240px;width:auto;aspect-ratio:600/848;object-fit:cover;border-radius:2px 5px 5px 2px;box-shadow:0 14px 26px rgba(0,0,0,.5)}
+@keyframes roll{to{transform:translateX(-50%)}}
+.strip:hover .track{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.track{animation:none}}
+
+/* work */
+.work{padding-block:88px}
+.sechead{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between;margin-bottom:36px}
+.sechead p{max-width:46ch;margin:0;color:var(--muted)}
+.cases{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.case{grid-column:span 4;background:none;border:0;padding:0;text-align:start;cursor:pointer;color:inherit;font:inherit;display:flex;flex-direction:column;gap:12px;min-width:0}
+.case.wide{grid-column:span 8}
+.case .pic{background:var(--tile);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;padding:26px;overflow:hidden;border-radius:6px;max-width:100%}
+.case.wide .pic{aspect-ratio:auto;height:100%;min-height:340px;padding:30px;gap:16px}
+.case .pic img{height:auto;width:62%;aspect-ratio:600/848;object-fit:cover;border-radius:2px 5px 5px 2px;box-shadow:0 22px 34px -10px rgba(18,18,16,.5),0 4px 10px rgba(18,18,16,.2);transition:transform .35s ease}
+.case.wide .pic img{width:30%;flex:none}
+.case.wide .pic img:nth-child(1){transform:rotate(-4deg) translateY(10px)}.case.wide .pic img:nth-child(3){transform:rotate(4deg) translateY(10px)}
+.case:hover .pic img{transform:translateY(-6px) rotate(-1deg)}
+@media (prefers-reduced-motion:reduce){.case:hover .pic img{transform:none}}
+.case .meta{display:flex;gap:10px;font-size:13px;color:var(--muted);font-weight:500}
+.case h3{font-family:var(--display);font-stretch:115%;font-weight:800;font-size:22px;line-height:1.1;margin:0;text-transform:uppercase;letter-spacing:-.01em}
+.case p{margin:0;color:var(--muted);font-size:15px}
+.case .more{font-family:var(--display);font-stretch:110%;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+@media (max-width:900px){.case,.case.wide{grid-column:span 6}.case.wide .pic{min-height:0;aspect-ratio:4/5}.case.wide .pic img+img{display:none}}
+@media (max-width:560px){.case,.case.wide{grid-column:span 12}}
+
+/* "more coming" card closes the case grid */
+.soon{grid-column:span 4;background:var(--yellow);border:2px dashed var(--ink);border-radius:6px;padding:26px 26px 150px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;min-height:100%}
+.soon .yr{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(56px,7vw,92px);line-height:.85;letter-spacing:-.03em}
+.soon .yr span{display:block;font-size:.42em;letter-spacing:0}
+.soon h3{margin:0;font-family:var(--display);font-stretch:115%;font-weight:800;font-size:22px;text-transform:uppercase;line-height:1.1}
+.soon p{margin:0;font-size:15px;max-width:30ch}
+.soon .ar{font-family:var(--ar-display);font-size:22px;line-height:1.35}
+.soon img{position:absolute;right:-14px;bottom:-20px;width:160px;max-width:44%;transform:rotate(-6deg)}
+.soon .live{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.soon .live i{width:10px;height:10px;border-radius:50%;background:var(--ink);animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.soon .live i{animation:none}}
+@media (max-width:900px){.soon{grid-column:span 6}}
+@media (max-width:560px){.soon{grid-column:span 12;min-height:360px}}
+
+/* services */
+.services{background:var(--ink);color:var(--paper);padding-block:88px}
+.services .eyebrow,.services h2{color:var(--yellow)}
+.services .sechead p{color:var(--ink-muted)}
+.svc{display:grid;grid-template-columns:repeat(2,1fr);border-top:2px solid var(--ink-soft)}
+.svc article{padding:28px 28px 30px 0;border-bottom:2px solid var(--ink-soft);display:grid;grid-template-columns:auto 1fr;gap:6px 18px;min-width:0}
+.svc article:nth-child(even){padding-inline:28px 0;border-inline-start:2px solid var(--ink-soft)}
+.svc .tag{grid-row:span 3;font-family:var(--display);font-stretch:125%;font-weight:900;font-size:22px;color:var(--yellow);width:44px}
+.svc h3{margin:0;font-family:var(--display);font-stretch:115%;font-weight:800;font-size:22px;text-transform:uppercase}
+.svc p{margin:0;color:var(--ink-muted);font-size:15px}
+.svc .ar{color:var(--paper);font-size:15px;opacity:.85}
+@media (max-width:760px){.svc{grid-template-columns:1fr}.svc article:nth-child(even){padding-inline:0;border-inline-start:0}}
+
+/* process */
+.process{padding-block:88px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink)}
+.steps li{padding:24px 24px 28px 0;border-bottom:2px solid var(--ink);display:flex;flex-direction:column;gap:8px;min-width:0}
+.steps li:not(:nth-child(3n+1)){border-inline-start:2px solid var(--ink);padding-inline-start:24px}
+.steps b{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:40px;line-height:1}
+.steps h3{margin:0;font-family:var(--display);font-stretch:115%;font-weight:800;font-size:19px;text-transform:uppercase}
+.steps p{margin:0;color:var(--muted);font-size:15px}
+@media (max-width:860px){.steps{grid-template-columns:1fr}.steps li:not(:nth-child(3n+1)){border-inline-start:0;padding-inline-start:0}}
+.promise{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+.promise span{border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:600;font-size:14px}
+
+$("#cases").append(el("div",{class:"soon"},
+  el("span",{class:"live"},el("i"),"In production"),
+  el("div",{class:"yr"},"2026",el("span",null,"and counting")),
+  el("h3",null,"That's our work up to 2026"),
+  el("p",null,"The 2027 season is on the desk right now. New books, new characters, coming soon."),
+  el("p",{class:"ar",lang:"ar",dir:"rtl"},"دي أعمالنا لحد ٢٠٢٦… استنوا الجديد قريب"),
+  el("img",{src:"mascot.webp",alt:"",loading:"lazy"})));
+
+/* branding */
+.brands{padding-block:0 88px}
+.bgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.bgrid button{grid-column:span 2;border:0;padding:0;background:var(--tile);border-radius:6px;overflow:hidden;cursor:pointer;text-align:start;font:inherit;color:inherit;display:flex;flex-direction:column}
+.bgrid button:nth-child(-n+2){grid-column:span 3}
+.bgrid img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.bgrid span{padding:10px 14px;font-family:var(--display);font-stretch:110%;font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.04em}
+@media (max-width:760px){.bgrid button,.bgrid button:nth-child(-n+2){grid-column:span 3}}
+@media (max-width:480px){.bgrid button,.bgrid button:nth-child(-n+2){grid-column:span 6}}
+
+/* clients */
+.clients{background:var(--yellow);padding-block:72px;border-block:2px solid var(--ink)}
+.names{margin-top:26px;display:flex;flex-direction:column;gap:10px;overflow:hidden;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)))}
+.nrow{overflow:hidden;white-space:nowrap}
+.ntrack,.ntrack .dup{display:inline-flex}
+.ntrack{animation:slide 70s linear infinite}
+.nrow.r .ntrack{animation-direction:reverse;animation-duration:80s}
+.nrow span span,.ntrack>span:not(.dup){font-family:var(--display);font-stretch:112%;font-weight:800;font-size:clamp(22px,3vw,36px);text-transform:uppercase;line-height:1.3;padding-inline:20px;display:inline-flex;align-items:center;gap:40px}
+.ntrack span::after{content:"✦";font-size:.5em;color:rgba(18,18,16,.4);margin-inline-start:40px}
+.ntrack .dup::after{content:none}
+.nrow.r span span,.nrow.r .ntrack>span:not(.dup){-webkit-text-stroke:1.5px var(--ink);color:transparent}
+.names:hover .ntrack{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ntrack{animation:none;flex-wrap:wrap;white-space:normal}.ntrack .dup{display:none}}
+
+/* contact */
+.contact{background:var(--ink);color:var(--paper);padding-block:88px}
+.contact h2{color:var(--yellow)}
+.cgrid{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;margin-top:32px}
+@media (max-width:860px){.cgrid{grid-template-columns:1fr}}
+.direct{display:flex;flex-direction:column;gap:20px}
+.direct .row{display:flex;flex-direction:column;gap:4px}
+.direct label{font-size:13px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.1em}
+.direct .val{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-family:var(--display);font-stretch:110%;font-weight:800;font-size:clamp(22px,2.8vw,32px);user-select:all;overflow-wrap:anywhere}
+.copy{font:600 13px var(--body);background:none;color:var(--yellow);border:1px solid var(--yellow);border-radius:999px;padding:4px 12px;cursor:pointer;user-select:none}
+.direct .btn{border-color:var(--yellow);color:var(--ink);background:var(--yellow);align-self:flex-start}
+form.quote{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--ink-soft);border-radius:10px;padding:24px}
+form.quote h3{grid-column:1/-1;margin:0;font-family:var(--display);font-stretch:115%;font-weight:800;text-transform:uppercase;font-size:20px}
+.fld{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-muted);min-width:0}
+.fld.wide{grid-column:1/-1}
+@media (max-width:520px){.fld{grid-column:1/-1}}
+.fld input,.fld select,.fld textarea{font:inherit;font-size:15px;color:var(--paper);background:var(--ink);border:1px solid #47463f;border-radius:6px;padding:10px 12px;width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{display:flex;align-items:center;gap:6px;border:1px solid #47463f;border-radius:999px;padding:6px 12px;color:var(--paper);cursor:pointer;font-size:14px}
+.chips input{accent-color:var(--yellow)}
+.chips label:has(input:checked){background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+form.quote .go{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+form.quote .btn{border-color:var(--yellow);background:var(--yellow);color:var(--ink)}
+#sendLink[hidden]{display:none}
+.hint{font-size:13px;color:var(--ink-muted);margin:0}
+footer{background:var(--ink);color:var(--ink-muted);border-top:2px solid var(--ink-soft);padding-block:26px;font-size:14px}
+footer .in{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+footer img{height:28px;width:auto;filter:invert(1)}
+
+/* case dialog */
+dialog{border:0;padding:0;width:min(1100px,calc(100vw - 24px));max-height:calc(100vh - 24px);border-radius:12px;background:var(--paper);color:var(--ink)}
+dialog::backdrop{background:rgba(18,18,16,.8)}
+.dh{position:sticky;top:0;z-index:2;background:var(--yellow);display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-bottom:2px solid var(--ink)}
+.dh .eyebrow{margin:0}
+.dh button{font:800 13px var(--display);text-transform:uppercase;background:var(--ink);color:var(--yellow);border:0;border-radius:999px;padding:8px 14px;cursor:pointer}
+.db{padding:28px 24px 36px;display:flex;flex-direction:column;gap:26px}
+.db h2{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(30px,5vw,56px);line-height:.95;text-transform:uppercase;margin:0}
+.dcols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media (max-width:760px){.dcols{grid-template-columns:1fr}}
+.dcols h4{margin:0 0 6px;font-family:var(--display);font-stretch:110%;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.dcols p{margin:0;max-width:60ch}
+.dcols .ar{margin-top:10px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:var(--ink);color:var(--yellow);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600}
+.gallery{display:flex;flex-direction:column;gap:18px}
+.gallery img{width:100%;height:auto;border-radius:6px;background:var(--tile)}
+</style>
+</head>
+<body>
+
+
+<nav class="top band" aria-label="Main"><div class="in">
+  <a class="logo" href="#top" aria-label="Arteleo home"><img src="word.png?v=3" alt="Arteleo"></a>
+  <div class="links"><a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
+  <a class="btn solid" href="#contact">Get a quote</a>
+</div></nav>
+
+<header class="hero band" id="top"><div class="in">
+  <div>
+    <div class="eyebrow">Educational design studio · Egypt · Est. 2020</div>
+    <h1>We turn teachers into brands.</h1>
+    <p class="arline ar" lang="ar">بنحوّل المدرس لبراند، مش بس بنصمم كتاب.</p>
+    <p class="lead">Covers, characters, interior systems and full revision series for teachers, centers and schools. Every book is built to be studied, and to be recognised on the shelf.</p>
+    <div class="ctas"><a class="btn solid" href="#work">See the work</a><a class="btn" href="#contact">Request a quote</a></div>
+  </div>
+  <div class="art"><div class="deck" id="deck" role="img" aria-label="Book covers designed by Arteleo, shuffling"></div><img class="mascot" src="mascot.webp" alt="The Arteleo mascot, a kid in a cap reading a book"></div>
+</div>
+<div class="in"><div class="stats">
+  <div><b>2020</b><span>Designing educational books since</span></div>
+  <div><b>50+</b><span>Teachers, schools and educational brands</span></div>
+  <div><b>300+</b><span>Full book systems delivered</span></div>
+</div></div></header>
+
+<div class="strip" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<section class="work band" id="work"><div class="in">
+  <div class="sechead"><div><div class="eyebrow">Selected work · 2024–2026</div><h2 class="big">Case studies</h2></div>
+    <p>Each series is built around the teacher's own character and grows with them year after year. Open a case to see covers and interior pages.</p></div>
+  <div class="cases" id="cases"></div>
+</div></section>
+
+<section class="services band" id="services"><div class="in">
+  <div class="sechead"><div><div class="eyebrow">What we do</div><h2 class="big">From idea to print-ready</h2></div>
+    <p>We build complete educational books and learning materials, and the visual system around them.</p></div>
+  <div class="svc">
+    <article><span class="tag">01</span><h3>Book cover design</h3><p>Strong cover concepts that reflect the teacher, the subject and the purpose of each release.</p><p class="ar" lang="ar">أغلفة بأفكار قوية مرتبطة بالمدرس والمادة وهدف كل إصدار.</p></article>
+    <article><span class="tag">02</span><h3>Interior book design</h3><p>Clear pages for explanations, questions, revisions, charts and illustrations.</p><p class="ar" lang="ar">صفحات داخلية للشرح والأسئلة والمراجعات بشكل واضح ومنظم.</p></article>
+    <article><span class="tag">03</span><h3>Creative layout ideas</h3><p>Visual ideas for any section or page that needs a smarter way to present information.</p><p class="ar" lang="ar">أفكار كريتيف لكل جزء محتاج طريقة عرض أوضح وأقوى للمعلومة.</p></article>
+    <article><span class="tag">04</span><h3>Full educational system</h3><p>Posters, revisions, booklets, exams, handouts and notebooks that all belong to one series.</p><p class="ar" lang="ar">سيستم كامل: بوسترات، مراجعات، بوكليتس، امتحانات وملازم.</p></article>
+    <article><span class="tag">+</span><h3>Branding &amp; identity</h3><p>Logos, colors, visual style and social media templates for teachers and educational brands.</p><p class="ar" lang="ar">هوية بصرية للمدرسين والمشاريع التعليمية.</p></article>
+    <article><span class="tag">+</span><h3>Presentations</h3><p>Educational and marketing decks for teachers, schools, centers and education projects.</p><p class="ar" lang="ar">بريزنتيشن تعليمية وتسويقية للمدرسين والسناتر والمدارس.</p></article>
+  </div>
+</div></section>
+
+<section class="process band" id="process"><div class="in">
+  <div class="sechead"><div><div class="eyebrow">How we work</div><h2 class="big">One book, six stages</h2></div>
+    <p>The same steps for every release, so you always know where your book is and what comes next.</p></div>
+  <ol class="steps">
+    <li><b>1</b><h3>Brief &amp; content</h3><p>You send the curriculum and your notes. We agree on pages, releases and delivery dates.</p></li>
+    <li><b>2</b><h3>Concept &amp; character</h3><p>We build the year's idea around you: the theme, the mood, and how you appear in it.</p></li>
+    <li><b>3</b><h3>Cover</h3><p>Cover concepts first, so the series can be announced and promoted early.</p></li>
+    <li><b>4</b><h3>Interior system</h3><p>Headings, question styles, notes and dividers designed once and reused across every book.</p></li>
+    <li><b>5</b><h3>Page production</h3><p>Pages laid out chapter by chapter, with progress updates you can follow.</p></li>
+    <li><b>6</b><h3>Revisions &amp; print files</h3><p>Agreed revision rounds, then print-ready files delivered on time.</p></li>
+  </ol>
+  <div class="promise"><span>Weekly progress report</span><span>Clear revision rounds</span><span>Print-ready files</span><span>Fast turnaround when the curriculum is late</span></div>
+</div></section>
+
+<section class="brands band" id="branding"><div class="in">
+  <div class="sechead"><div><div class="eyebrow">Branding highlights</div><h2 class="big">Identities</h2></div>
+    <p>Visual identities for teachers, academies and education companies.</p></div>
+  <div class="bgrid" id="bgrid"></div>
+</div></section>
+
+<section class="clients band"><div class="in">
+  <div class="eyebrow">Teachers and brands we've designed for</div>
+  </div>
+  <div class="names" aria-label="Teachers and brands"><div class="nrow l"><div class="ntrack"><span>Nader George</span><span>Dr. Nasser El-Batal</span><span>Dr. Abd Elrahman Ashour</span><span>Eng. Fady Nabil</span><span>Dr. Eman Omran</span><span>Nader Ragab</span><span>Dr. Kareem Magdy</span><span>David Saeed</span><span>Hytham Ahmed</span><span>Mahmoud Aziz</span><span>Joseph Anwar</span><span>Muyassar Hassan</span><span>Mohamed Fouda</span><span>Maged El-Saadani</span><span aria-hidden="true" class="dup"><span>Nader George</span><span>Dr. Nasser El-Batal</span><span>Dr. Abd Elrahman Ashour</span><span>Eng. Fady Nabil</span><span>Dr. Eman Omran</span><span>Nader Ragab</span><span>Dr. Kareem Magdy</span><span>David Saeed</span><span>Hytham Ahmed</span><span>Mahmoud Aziz</span><span>Joseph Anwar</span><span>Muyassar Hassan</span><span>Mohamed Fouda</span><span>Maged El-Saadani</span></span></div></div><div class="nrow r"><div class="ntrack"><span>Amr Abd El-Aal</span><span>Mohamed Ramadan</span><span>Shahaab Walid</span><span>Mohamed Nasser</span><span>Mustafa Elsayed</span><span>Reda El-Farouk</span><span>Mohamed Tarek</span><span>Hassan El-Hewais</span><span>Abdelrahman El-Khatib</span><span>Edu Ninjaz</span><span>Hammady Academy</span><span>Sha8af</span><span>Saffy Eldin Center</span><span aria-hidden="true" class="dup"><span>Amr Abd El-Aal</span><span>Mohamed Ramadan</span><span>Shahaab Walid</span><span>Mohamed Nasser</span><span>Mustafa Elsayed</span><span>Reda El-Farouk</span><span>Mohamed Tarek</span><span>Hassan El-Hewais</span><span>Abdelrahman El-Khatib</span><span>Edu Ninjaz</span><span>Hammady Academy</span><span>Sha8af</span><span>Saffy Eldin Center</span></span></div></div></div>
+  <div class="in" style="display:none">
+</div></section>
+
+<section class="contact band" id="contact"><div class="in">
+  <div class="eyebrow" style="color:var(--ink-muted)">Start your next book</div>
+  <h2 class="big">Let's talk about your series</h2>
+  <div class="cgrid">
+    <div class="direct">
+      <div class="row"><label>WhatsApp / phone</label><div class="val"><span id="phone">01097895870</span><button class="copy" type="button" data-copy="01097895870">Copy</button></div></div>
+      <div class="row"><label>Email</label><div class="val"><span id="mail">arteleolabs@gmail.com</span><button class="copy" type="button" data-copy="arteleolabs@gmail.com">Copy</button></div></div>
+      <a class="btn" href="https://wa.me/201097895870" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      <p class="ar" lang="ar" style="margin:0;color:var(--ink-muted)">ابعتلنا المنهج وعدد الصفحات وميعاد التسليم، ونرد عليك بعرض سعر.</p>
+    </div>
+    <form class="quote" id="quote">
+      <h3>Request a quote</h3>
+      <label class="fld"><span>Your name</span><input id="q_name" required autocomplete="name"></label>
+      <label class="fld"><span>You are</span><select id="q_type"><option>Teacher</option><option>Center / academy</option><option>School</option><option>Publisher</option><option>Other</option></select></label>
+      <label class="fld"><span>Subject</span><input id="q_subject" placeholder="Biology, History…"></label>
+      <label class="fld"><span>Grade</span><select id="q_grade"><option>1st Sec</option><option>2nd Sec</option><option>3rd Sec</option><option>Prep</option><option>Primary</option><option>Other</option></select></label>
+      <div class="fld wide"><span>What do you need?</span><div class="chips" id="q_need">
+        <label><input type="checkbox" value="Covers" checked>Covers</label><label><input type="checkbox" value="Interior pages">Interior pages</label><label><input type="checkbox" value="Full series">Full series</label><label><input type="checkbox" value="Revision books">Revision books</label><label><input type="checkbox" value="Posters">Posters</label><label><input type="checkbox" value="Branding">Branding</label><label><input type="checkbox" value="Presentation">Presentation</label></div></div>
+      <label class="fld"><span>Approx. pages</span><input id="q_pages" type="number" min="0" inputmode="numeric"></label>
+      <label class="fld"><span>Needed by</span><input id="q_date" type="date"></label>
+      <label class="fld wide"><span>Anything else</span><textarea id="q_note" rows="3" dir="auto"></textarea></label>
+      <div class="go"><button class="btn" type="submit">Prepare my message</button><a class="btn" id="sendLink" hidden target="_blank" rel="noopener">Send on WhatsApp</a></div>
+      <p class="hint" id="q_hint">We'll turn this into a WhatsApp message you can send us in one tap.</p>
+    </form>
+  </div>
+</div></section>
+<footer class="band"><div class="in"><img src="word.png?v=3" alt="Arteleo"><span>Educational Design Studio · Est. 2020</span></div></footer>
+
+<div id="mcur" aria-hidden="true" hidden><img src="mascot.webp" alt=""></div>
+<dialog id="caseDlg" aria-labelledby="dTitle"></dialog>
+
+<script>
+const CASES=[
+ {id:"history",wide:true,teacher:"Mr. Nader George",subject:"History",year:"2026",title:"The History of History",line:"The teacher becomes the narrator, travelling through every era.",
+  covers:["c/ng4.webp","c/ng0.webp","c/ng1.webp"],tags:["Editorial","Infographic","Covers","Illustrations"],
+  challenge:"Present history in a new way that makes students engage with the curriculum, instead of the usual format of dry information and conventional narration.",
+  approach:"We used the teacher's own character as the narrator inside the books, appearing across historical eras as if he were travelling through time. The same storytelling carried into the covers, so each book became part of one experience.",
+  ar:"بنينا الفكرة على شخصية المدرس نفسه كراوي بيسافر بين العصور، فاتحول المنهج من محتوى تقليدي لتجربة بصرية أقرب للقصة.",
+  pages:["p12","p13","p15","p16","p17"]},
+ {id:"chemistry",teacher:"Dr. Nasser El-Batal",subject:"Chemistry",year:"2026",title:"Remaking Different",line:"A superhero world built around the teacher.",
+  covers:["c/batal2.webp"],tags:["Editorial","Infographic","Covers","Illustrations"],
+  challenge:"Build a clear, memorable brand that links Dr. Nasser El-Batal to the superhero idea, and keep it fresh with new cover concepts every year.",
+  approach:"Some releases stay inside the superhero world, others explore independent ideas, all tied to the same character. We added student notebook covers and renewed interior themes closer to how students engage with the content.",
+  ar:"هوية مبنية على شخصية الدكتور نفسه ومرتبطة بعالم الأبطال، مع تطوير الكفرات والداخلي كل سنة.",
+  pages:["p20","p21","p22","p23","p24"]},
+ {id:"biology",teacher:"Dr. Abd Elrahman Ashour",subject:"Biology",year:"2024–2026",title:"Grey's Biology",line:"A revision series run like a product line.",
+  covers:["c/grey1.webp"],tags:["Editorial","Covers","Illustrations","Stickers","Posters"],
+  challenge:"Design 6+ revision books, each with its own strong marketing identity, while keeping the whole series tied to the teacher's brand.",
+  approach:"Every book got its own name, concept and mood. Inside, we restructured information blocks and questions, replaced plain 'Notes' headings with playful phrases in the brand's voice, and added a sticker pack and revision posters.",
+  ar:"سلسلة مراجعات اتبنت كبراند كامل للمدرس، كل كتاب ليه اسم وفكرة وهوية، ومعاها استيكرات وبوسترات.",
+  pages:["p27","p32","p34","p35","p38"]},
+ {id:"science",teacher:"Dr. Eman Omran",subject:"Integrated Science",year:"2025–2026",title:"Faster with quality",line:"Full books in the ten days before each term.",
+  covers:["c/eman1.webp"],tags:["Editorial","Covers","Illustrations","Fast delivery"],
+  challenge:"The curriculum was released only about ten days before each term. In that window we had to build the concept, illustrations, theme, covers and every interior page.",
+  approach:"Across two years and four terms we delivered complete print-ready books every term, plus the Magic Book revision series and revision posters, all built around the teacher's character.",
+  ar:"على مدار سنتين و٤ ترمات سلّمنا كتب كاملة جاهزة للطباعة في حوالي ١٠ أيام قبل كل ترم.",
+  pages:["p49","p50","p51","p52","p53"]},
+ {id:"maths",teacher:"Eng. Fady Nabil",subject:"Maths",year:"2026",title:"Different Systems",line:"One teacher, many personas through the year.",
+  covers:["c/fady5.webp"],tags:["Editorial","Covers","Characters","Illustrations"],
+  challenge:"The teacher needed fresh cover ideas throughout the year while staying the centre of the identity.",
+  approach:"We turned his character into a flexible visual system: each release presents a new persona with its own mood and colors. Titles, dividers, question styles and notes inside follow the same theme.",
+  ar:"حولنا شخصية المدرس لسيستم مرن يظهر بشخصيات مختلفة طول السنة، والداخلي ماشي مع نفس الثيم.",
+  pages:["p41","p42","p44","p46"]},
+ {id:"english",teacher:"Mr. Nader Ragab",subject:"English",year:"2025",title:"Glory Series",line:"Cinematic covers for every part of the curriculum.",
+  covers:["c/ragab1.webp"],tags:["Editorial","Covers","Illustrations"],
+  challenge:"Turn English language content from traditional pages into a visual experience with story, mood and identity.",
+  approach:"Each cover is its own cinematic world for a part of the curriculum. Interior pages organise reading, listening, vocabulary, grammar and exercises without visual clutter.",
+  ar:"كفرات سينمائية لكل جزء من المنهج، وصفحات داخلية منظمة من غير زحمة.",
+  pages:["p56","p57","p58"]},
+ {id:"kareem",teacher:"Dr. Kareem Magdy",subject:"Biology",year:"2025",title:"Kareemology",line:"A long-term client with a new direction every year.",
+  covers:["c/kareem2.webp"],tags:["Covers","Editorial","Illustrations","Presentations"],
+  challenge:"Create a fresh concept every year while keeping the books tied to the teacher's identity and the nature of Biology.",
+  approach:"This year: a bright, colorful interior theme with one consistent style, and clear mind maps that connect ideas in a detail-heavy subject.",
+  ar:"من أوائل عملاء أرتيليو، وكل سنة اتجاه جديد في الكونسبت والكفرات والداخلي.",
+  pages:["p62","p63","p66"]}
+];
+const BRANDS=[["Dr. Nasser El-Batal","p104"],["Hammady Academy","p106"],["Edu Ninjaz","p103"],["Sha8af","p105"],["Saffy Eldin Center","p107"]];
+const $=s=>document.querySelector(s);
+function el(t,a,...k){const e=document.createElement(t);for(const x in a||{}){const v=a[x];if(v==null)continue;if(x.startsWith("on"))e.addEventListener(x.slice(2),v);else e.setAttribute(x,v)}k.flat().forEach(c=>c!=null&&e.append(c));return e}
+
+/* marquee: covers twice so the loop is seamless */
+const strip=["ng0","batal1","grey1","fady1","eman1","ragab1","kareem1","amr2","arabic1","horizon1","ng4","batal4","grey4","fady3","ragab2","kareem2","amr1","arabic2","horizon2","ng1","batal5","grey2","fady5","batal2","grey5","amr3","ng2","fady2","batal3","grey3","ng3","fady4"].map(n=>"c/"+n+".webp");
+[...strip,...strip].forEach(s=>$("#track").append(el("img",{src:s,alt:"",loading:"lazy"})));
+
+/* hero: headline words rise in, cover deck shuffles */
+(()=>{const h=document.querySelector(".hero h1");const words=h.textContent.split(" ");h.textContent="";
+  words.forEach((w,i)=>{const s=el("span",{class:"w",style:"animation-delay:"+(i*90)+"ms"},w);h.append(s,i<words.length-1?" ":"")});
+  const deckC=["ng0","batal2","grey1","fady5","eman1","kareem2","ragab1","arabic2","amr2","grey4","fady3","ng4"].map(n=>"c/"+n+".webp");
+  const D=$("#deck"),cards=deckC.map(src=>{const b=el("div",{class:"bk"},el("img",{src,alt:""}));D.append(b);return b});
+  const VIS=6;let order=cards.map((_,i)=>i);
+  const place=()=>order.forEach((ci,k)=>{const b=cards[ci];if(b.classList.contains("out"))return;
+    b.style.zIndex=String(20-k);b.style.opacity=k<VIS?"1":"0";b.style.filter=k?"brightness("+(1-k*.07)+")":"none";
+    b.style.transform="translateX("+(-k*34)+"px) translateY("+(-k*10)+"px) rotate("+(-k*3.2)+"deg) scale("+(1-k*.045)+")"});
+  place();
+  const still=matchMedia("(prefers-reduced-motion: reduce)").matches;let paused=false;
+  cards.forEach((b,ci)=>b.addEventListener("mouseenter",()=>{if(order[0]===ci||b.classList.contains("out"))return;
+    order=[ci,...order.filter(x=>x!==ci)];place()}));
+  D.parentElement.addEventListener("mouseenter",()=>paused=true);D.parentElement.addEventListener("mouseleave",()=>paused=false);
+  if(!still)setInterval(()=>{if(paused||document.hidden)return;const ci=order.shift();order.push(ci);const top=cards[ci];top.classList.add("out");place();
+    setTimeout(()=>{top.style.transition="none";top.classList.remove("out");place();void top.offsetWidth;top.style.transition=""},750)},2600);
+})();
+
+/* mascot cursor (desktop only, falls back to the normal cursor everywhere else) */
+(()=>{if(!matchMedia("(pointer:fine)").matches)return;const c=$("#mcur"),still=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  c.hidden=false;document.documentElement.classList.add("mc");
+  let x=-100,y=-100,cx=x,cy=y;
+  addEventListener("pointermove",e=>{x=e.clientX;y=e.clientY;c.classList.remove("hide");
+    const t=e.target.closest("a,button,.bk,.case,label");c.classList.toggle("hot",!!t)},{passive:true});
+  addEventListener("pointerdown",()=>c.classList.add("down"));addEventListener("pointerup",()=>c.classList.remove("down"));
+  document.addEventListener("pointerleave",()=>c.classList.add("hide"));
+  /* inside the case dialog the cursor would sit under the backdrop, so the system cursor takes over there */
+  const dlg=$("#caseDlg");new MutationObserver(()=>{const o=dlg.open;document.documentElement.classList.toggle("mc",!o);c.style.display=o?"none":""}).observe(dlg,{attributes:true,attributeFilter:["open"]});
+  (function loop(){cx+=(x-cx)*(still?1:.35);cy+=(y-cy)*(still?1:.35);c.style.transform="translate("+(cx-14)+"px,"+(cy-8)+"px)";requestAnimationFrame(loop)})();
+})();
+
+/* case cards */
+CASES.forEach(c=>$("#cases").append(el("button",{class:"case"+(c.wide?" wide":""),type:"button",onclick:()=>openCase(c)},
+  el("div",{class:"pic"},c.covers.slice(0,c.wide?3:1).map(s=>el("img",{src:s,alt:c.title+" cover for "+c.teacher,loading:"lazy"}))),
+  el("div",{class:"meta"},el("span",null,c.subject),el("span",null,"·"),el("span",null,c.year)),
+  el("h3",null,c.title),el("p",null,c.teacher+". "+c.line),el("span",{class:"more"},"Open case"))));
+
+function openCase(c){const d=$("#caseDlg");
+  d.replaceChildren(el("div",{class:"dh"},el("p",{class:"eyebrow"},c.teacher+" · "+c.subject+" · "+c.year),el("button",{type:"button",onclick:()=>d.close()},"Close ✕")),
+    el("div",{class:"db"},el("h2",{id:"dTitle"},c.title),el("div",{class:"tags"},c.tags.map(t=>el("span",null,t))),
+      el("div",{class:"dcols"},el("div",null,el("h4",null,"The challenge"),el("p",null,c.challenge)),el("div",null,el("h4",null,"What we did"),el("p",null,c.approach),el("p",{class:"ar",lang:"ar"},c.ar))),
+      el("div",{class:"gallery"},c.pages.map(p=>el("img",{src:"g/"+p+".webp",alt:c.title+" spread",loading:"lazy",width:"1400",height:"1050"})))));
+  d.showModal();d.scrollTop=0}
+$("#caseDlg").addEventListener("click",e=>{if(e.target===e.currentTarget)e.currentTarget.close()});
+
+$("#cases").append(el("div",{class:"soon"},
+  el("span",{class:"live"},el("i"),"In production"),
+  el("div",{class:"yr"},"2026",el("span",null,"and counting")),
+  el("h3",null,"That's our work up to 2026"),
+  el("p",null,"The 2027 season is on the desk right now. New books, new characters, coming soon."),
+  el("p",{class:"ar",lang:"ar",dir:"rtl"},"دي أعمالنا لحد ٢٠٢٦… استنوا الجديد قريب"),
+  el("img",{src:"mascot.webp",alt:"",loading:"lazy"})));
+
+/* branding */
+BRANDS.forEach(([n,p])=>$("#bgrid").append(el("button",{type:"button",onclick:()=>{const d=$("#caseDlg");
+  d.replaceChildren(el("div",{class:"dh"},el("p",{class:"eyebrow"},"Branding · "+n),el("button",{type:"button",onclick:()=>d.close()},"Close ✕")),el("div",{class:"db"},el("h2",{id:"dTitle"},n),el("div",{class:"gallery"},el("img",{src:"g/"+p+".webp",alt:n+" identity"}))));d.showModal()}},
+  el("img",{src:"g/"+p+".webp",alt:n+" identity",loading:"lazy"}),el("span",null,n))));
+
+/* copy buttons */
+document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>{const t=b.dataset.copy;
+  const ok=()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1600)};
+  const fb=()=>{const r=document.createRange();r.selectNodeContents(b.previousElementSibling);const s=getSelection();s.removeAllRanges();s.addRange(r)};
+  try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}}));
+
+/* quote form → WhatsApp message */
+$("#quote").addEventListener("submit",e=>{e.preventDefault();
+  const v=id=>$("#"+id).value.trim();const need=[...document.querySelectorAll("#q_need input:checked")].map(i=>i.value);
+  const msg=["Hi Arteleo, I'd like a quote.","Name: "+v("q_name"),"I'm a: "+v("q_type"),v("q_subject")&&"Subject: "+v("q_subject"),"Grade: "+v("q_grade"),
+    need.length&&"I need: "+need.join(", "),v("q_pages")&&"Approx. pages: "+v("q_pages"),v("q_date")&&"Needed by: "+v("q_date"),v("q_note")&&"Notes: "+v("q_note")].filter(Boolean).join("\n");
+  const a=$("#sendLink");a.href="https://wa.me/201097895870?text="+encodeURIComponent(msg);a.hidden=false;
+  $("#q_hint").textContent="Your message is ready. Tap “Send on WhatsApp” to open it.";a.focus()});
+</script>
+
+</body>
+</html>
